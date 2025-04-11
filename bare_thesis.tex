@@ -5,12 +5,13 @@
 %% The original source files were:
 %%
 %% install/buptgraduatethesis.dtx  (with options: `bare-thesis')
-%%
+%% 
 %% This file is a part of the example of BUPTGraduateThesis.
-%%
+%% 
 
 
 \documentclass[txmath,gls]{BUPTthesis}
+\usepackage{cjkfakebold}
 \addbibresource{bare_thesis.bib}
 
 \input{metadata}
@@ -18,13 +19,14 @@
 
 \begin{document}
 \maketitle
-\frontmatter                            % only in book class (roman page #s)
+
 \include{abstract}
 
+\frontmatter     % only in book class (roman page #s)
 \tableofcontents
-\listoffigures
-\listoftables
-\include{notations}
+% \listoffigures
+% \listoftables
+% \include{notations}
 
 \mainmatter
 \include{ch_intro}
@@ -32,12 +34,13 @@
 
 \mainbib
 
+
 \appendix
 \include{app_abbreviation}
-\include{app_lhospital}
+% \include{app_lhospital}
 \backmatter
 \nottoggle{review}{\include{thanks}}{}
 % %% 在读期间论文发表情况
-\include{pubs}
+% \include{pubs}
 
 \end{document}

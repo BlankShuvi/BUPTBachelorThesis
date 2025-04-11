@@ -3,23 +3,22 @@
   \cleardoublepage
   \pagestyle{empty}
   % 密级 保密期限
-  \begin{flushright}
-    \zihao{4}
-    \bsong
-    \bupt@label@classlevel
-    \bupt@title@sep
-    \hspace*{4em}
-    \bupt@label@classdur
-    \bupt@title@sep
-    \hspace*{4em}
-  \end{flushright}
+  % \begin{flushright}
+  %   \zihao{4}
+  %   \bupt@label@classlevel
+  %   \bupt@title@sep
+  %   \hspace*{4em}
+  %   \bupt@label@classdur
+  %   \bupt@title@sep
+  %   \hspace*{4em}
+  % \end{flushright}
   % logo
   \vspace{0.5cm}
   \begin{center}
     \includegraphics[width=11.6cm]{logo/buptname}\par
     \vspace{0.54cm}
-    \fontsize{32pt}{\baselineskip}\selectfont\heiti
-    \bupt@label@covertitle\par
+    \fontsize{26pt}{\baselineskip}\selectfont\CJKfakebold{\heiti
+    \bupt@label@covertitle}\par
     \vspace{1cm}
     \includegraphics[width=3.09cm]{logo/buptseal}
   \end{center}
@@ -28,63 +27,44 @@
   \vspace{1cm}
   \begin{center}
     \zihao{-2}
-    \bsong
-    \begin{tabular}{lp{13\ccwd}}
-      \bupt@label@ctitle\bupt@title@sep & \uline{\bupt@meta@ctitle\hfill}
+    \settowidth{\bupt@titlewidth}{\CJKfakebold{\heiti\bupt@meta@ctitle}}
+    % \setlength{\extrarowheight}{10mm}
+    \setlength{\arrayrulewidth}{0.5bp}
+    \begin{tabular}{@{}p{36bp}@{\bupt@title@sep}p{95mm}@{}}
+      \CJKfakebold{\heiti\bupt@label@ctitle} & %
+      \parbox[t]{95mm}{%
+        \centering%
+        \newcommand\titlebreak{\\\global\let\bupt@long@title\@empty}
+        \rule[-10bp]{95mm}{0.5bp}\\[-27bp]
+        \CJKfakebold{\heiti\bupt@meta@ctitle}%
+      }%
+      \\%
+      \ifx\bupt@long@title\@empty
+        \cline{2-2}
+      \else
+        \ifdim\bupt@titlewidth>95mm
+        \cline{2-2}
+        \fi
+      \fi
     \end{tabular}
   \end{center}
   \vspace{0.5cm}
   \begin{center}
     \zihao{4}
-    \bsong
-    \begin{tabular}{lp{10\ccwd}}
-      \bupt@label@studentid\bupt@title@sep & \uline{\hfill\bupt@meta@studentid\hfill} \\
-      \bupt@label@cauthor\bupt@title@sep & \uline{\hfill\bupt@meta@cauthor\hfill} \\
-      \bupt@label@cmajor\bupt@title@sep & \uline{\hfill\bupt@meta@cmajor\hfill} \\
-      \bupt@label@csupervisor\bupt@title@sep & \uline{\hfill\bupt@meta@csupervisor\hfill} \\
-      \bupt@label@cdepartment\bupt@title@sep & \uline{\hfill\bupt@meta@cdepartment\hfill} \\
+    \setlength\extrarowheight{5pt}
+    \begin{tabular}{lc}
+      \CJKfakebold{\bupt@label@cauthor}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@cauthor}\hfill} \\
+      \CJKfakebold{\bupt@label@cdepartment}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@cdepartment}\hfill} \\
+      \CJKfakebold{\bupt@label@cmajor}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@cmajor}\hfill} \\
+      \CJKfakebold{\bupt@label@classid}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@classid}\hfill} \\
+      \CJKfakebold{\bupt@label@studentid}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@studentid}\hfill} \\
+      \CJKfakebold{\bupt@label@csupervisor}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@csupervisor}\hfill} \\
     \end{tabular}
   \end{center}
   \vspace{0.5cm}
   \begin{center}
-    \zihao{4}\bsong
+    \zihao{4}
     \bupt@meta@cdate
-  \end{center}
-}
-
-\newcommand{\makeenglishtitle}{%
-  \cleardoublepage
-  \begin{center}
-    \vspace{2cm}
-    \includegraphics[width=14cm]{logo/buptname_en}\par
-    \vspace{0.5cm}
-    \zihao{1}\sffamily\bupt@label@ecovertitle\par
-    \vspace{0.5cm}
-    \includegraphics[width=3.09cm]{logo/buptseal}
-  \end{center}
-  % \vspace{0.5cm}
-  \begin{center}
-    \zihao{2}
-    {\bfseries
-    \MakeUppercase
-    \bupt@meta@etitle}
-  \end{center}
-  \vspace{1.5cm}
-  \begin{center}
-    \zihao{4}
-    \bfseries
-    \begin{tabular}{rc}
-      \bupt@label@estudentid\bupt@title@esep & \uline{\hfill{\bupt@meta@studentid}\hfill} \\
-      \bupt@label@eauthor\bupt@title@esep & \uline{\hfill{\bupt@meta@eauthor}\hfill} \\
-      \bupt@label@emajor\bupt@title@esep & \uline{\hfill\bupt@meta@emajor\hfill} \\
-      \bupt@label@esupervisor\bupt@title@esep & \uline{\hfill{\bupt@meta@esupervisor}\hfill} \\
-      \bupt@label@edepartment\bupt@title@esep & \uline{\hfill\bupt@meta@edepartment\hfill} \\
-    \end{tabular}
-  \end{center}
-  \vspace{0.5cm}
-  \begin{center}
-    \zihao{4}\bfseries
-    \bupt@meta@edate
   \end{center}
 }
 
@@ -92,7 +72,7 @@
 %% 独创性声明与授权说明
 \newcommand{\bupt@declaration}{%
   \begin{center}
-    \bupt@declaration@title
+    \CJKfakebold{\bupt@declaration@title}
   \end{center}
   \par{%
     \bupt@declaration@body
@@ -104,7 +84,7 @@
 }
 \newcommand{\bupt@authorization}{%
   \begin{center}
-    \bupt@authorization@title
+    \CJKfakebold{\bupt@authorization@title}
   \end{center}
   \par{%
     \bupt@authorization@body

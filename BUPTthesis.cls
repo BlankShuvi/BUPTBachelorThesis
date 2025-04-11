@@ -4,6 +4,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{kvoptions}
 \RequirePackage{ifthen}
+\RequirePackage{ulem}
 \SetupKeyvalOptions{family=bupt,prefix=bupt@,setkeys=\kvsetkeys}
 \newcommand{\ekv}[1]{\kvsetkeys{bupt}{#1}}
 \DeclareStringOption[tx]{mathfont}
@@ -22,49 +23,39 @@
 \ifthenelse{\boolean{bupt@chapterbib}}{\toggletrue{chapterbib}}{}
 
 % config ctex
-\LoadClass[a4paper,UTF8,zihao=-4,scheme=chinese,linespread=1.4,fntef]{ctexbook}
+\LoadClass[a4paper,oneside,UTF8,zihao=-4,scheme=chinese,linespread=1.5]{ctexbook}
 \ctexset{%
   listfigurename = \bupt@listfigurename,
   listtablename  = \bupt@listtablename,
   part/pagestyle = empty,
+  chapter/tocline = \CTEXifname{\protect\numberline{\heiti\CTEXthechapter\hspace{.3em}}}{}\heiti#2,
   chapter = {%
-    format = \zihao{3}\heiti\centering,
+    format = \zihao{3}\heiti\centering\CJKfakebold,
     pagestyle = main,
     beforeskip = 0pt,
     afterskip = 40pt,
   },
-  section/format = \zihao{4}\heiti,
-  subsection/format = \zihao{-4}\heiti,
-  subsubsection/format = \zihao{-4},
+  section/format = \zihao{4}\heiti\CJKfakebold,
+  subsection/format = \indent\zihao{-4}\heiti\CJKfakebold,
+  subsubsection/format = \indent\zihao{-4}\heiti\CJKfakebold,
 }
 \newcommand{\refname}{\bibname}
 % \AtEndOfClass{\input{BUPTthesis.cfg}}
 
 % define names
-\iftoggle{review}
-{
-\newcommand{\studentid}[1]{\def\bupt@meta@studentid{\hfill}}
-\newcommand{\cauthor}[1]{\def\bupt@meta@cauthor{\hfill}}
-\newcommand{\eauthor}[1]{\def\bupt@meta@eauthor{\hfill}}
-\newcommand{\csupervisor}[1]{\def\bupt@meta@csupervisor{\hfill}}
-\newcommand{\esupervisor}[1]{\def\bupt@meta@esupervisor{\hfill}}
-}{
 \newcommand{\studentid}[1]{\def\bupt@meta@studentid{#1}}
-\newcommand{\cauthor}[1]{\def\bupt@meta@cauthor{#1}}
-\newcommand{\eauthor}[1]{\def\bupt@meta@eauthor{#1}}
-\newcommand{\csupervisor}[1]{\def\bupt@meta@csupervisor{#1}}
-\newcommand{\esupervisor}[1]{\def\bupt@meta@esupervisor{#1}}
-}
+\newcommand{\classid}[1]{\def\bupt@meta@classid{#1}}
 \newcommand{\ctitle}[1]{\def\bupt@meta@ctitle{#1}}
 \newcommand{\etitle}[1]{\def\bupt@meta@etitle{#1}}
 \newcommand{\cdegree}[1]{\def\bupt@meta@cdegree{#1}}
-\newcommand{\edegree}[1]{\def\bupt@meta@edegree{#1}}
-\newcommand{\cdiscipline}[1]{\def\bupt@meta@cdiscipline{#1}}
-\newcommand{\etype}[1]{\def\bupt@meta@etype{#1}}
 \newcommand{\cdepartment}[1]{\def\bupt@meta@cdepartment{#1}}
 \newcommand{\edepartment}[1]{\def\bupt@meta@edepartment{#1}}
 \newcommand{\cmajor}[1]{\def\bupt@meta@cmajor{#1}}
 \newcommand{\emajor}[1]{\def\bupt@meta@emajor{#1}}
+\newcommand{\cauthor}[1]{\def\bupt@meta@cauthor{#1}}
+\newcommand{\eauthor}[1]{\def\bupt@meta@eauthor{#1}}
+\newcommand{\csupervisor}[1]{\def\bupt@meta@csupervisor{#1}}
+\newcommand{\esupervisor}[1]{\def\bupt@meta@esupervisor{#1}}
 \newcommand{\ckeywords}[1]{\def\bupt@meta@ckeywords{#1}}
 \newcommand{\ekeywords}[1]{\def\bupt@meta@ekeywords{#1}}
 \newcommand{\cdate}[1]{\def\bupt@meta@cdate{#1}}
@@ -75,7 +66,7 @@
 \RequirePackage{amsthm,thmtools}
 \RequirePackage{mathtools,amsfonts,amssymb,empheq}
 \ifthenelse{\equal{\bupt@mathfont}{tx}}{
-  \RequirePackage{newtxtext}
+\RequirePackage{newtxtext}
   \RequirePackage[smallerops]{newtxmath}
   \RequirePackage[scr=euler]{mathalpha}
 }{}
@@ -134,7 +125,7 @@
 }
 {%
   \newcommand{\chapterbib}{\relax}
-  \newcommand{\mainbib}{\printbibliography[heading=bibintoc]}
+  \newcommand{\mainbib}{\printbibliography[heading=bibintoc,title={\heiti\bupt@label@refname}]}
 }
 \iftoggle{review}{%
 \newcommand{\pubcite}[1]{\AtNextCitekey{\clearname{author}}\fullcite{#1}}
@@ -315,7 +306,7 @@
 
 % config toc lof lot
 \RequirePackage[titles]{tocloft}
-\tocloftpagestyle{main}
+\tocloftpagestyle{front}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftchapfont}{\normalfont}
 \renewcommand{\cftchappagefont}{\normalfont}
@@ -327,13 +318,20 @@
 
 % define heading
 \usepackage{fancyhdr}
+\fancypagestyle{front}{%
+  \fancyhf{}
+  \fancyfoot[C]{\zihao{-5}\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
 \fancypagestyle{main}{%
   \fancyhf{}
-  \fancyhead[CE]{\zihao{-5}\bupt@page@head}
-  \fancyhead[CO]{\zihao{-5}\leftmark}
-  \fancyfoot[C]{\zihao{5}\thepage}
+  \fancyhead[C]{\zihao{-5}\bupt@page@head}
+  % \fancyhead[CE]{\zihao{-5}\bupt@page@head}
+  % \fancyhead[CO]{\zihao{-5}\leftmark}
+  \fancyfoot[C]{\zihao{-5}\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
 }
-\appto\frontmatter{\pagestyle{main}\pagenumbering{roman}}
+\appto\frontmatter{\pagestyle{front}\pagenumbering{Roman}}
 \appto\mainmatter{\pagestyle{main}\pagenumbering{arabic}}
 
 
@@ -389,19 +387,19 @@
 	\cleardoublepage
   \pdfbookmark[0]{\bupt@label@cabstract}{abstract}
   \begin{center}
-    {\zihao{3}\heiti\bupt@meta@ctitle}
+    {\zihao{3}\CJKfakebold{\heiti\bupt@meta@ctitle}}
     \vskip 20pt
-    {\zihao{-3}\heiti\bupt@label@cabstract}
+    {\zihao{-3}\CJKfakebold{\heiti\bupt@label@cabstract}}
   \end{center}
   \markboth{\bupt@label@cabstract}{}
-  \zihao{4}
+  \zihao{-4}
   \par
 }
 {
   \par
 	\vspace{20pt}
 	\noindent
-	{\zihao{4} {\heiti\bupt@label@ckeywords} {\bupt@meta@ckeywords}}
+	{\zihao{-4} {\CJKfakebold{\heiti\bupt@label@ckeywords}} {\bupt@meta@ckeywords}}
 }
 
 \newenvironment{eabstract}
@@ -411,21 +409,21 @@
   \begin{center}
     \begin{minipage}{120mm}
       \centering
-      {\zihao{3}\bfseries\MakeUppercase\bupt@meta@etitle}
+      {\zihao{3}\bfseries\bupt@meta@etitle}
       \vskip 20pt
       {\zihao{-3}\bfseries\bupt@label@eabstract}
     \end{minipage}
   \end{center}
   \markboth{\bupt@label@eabstract}{}
   \vskip 20pt
-  \zihao{4}
+  \zihao{-4}
   \par
 }
 {
   \par
 	\vspace{20pt}
 	\noindent
-	{\zihao{4} {\bfseries\bupt@label@ekeywords} {\bupt@meta@ekeywords}}
+	{\zihao{-4} {\bfseries\bupt@label@ekeywords} {\bupt@meta@ekeywords}}
 }
 
 \newenvironment{notations}
@@ -440,25 +438,36 @@
 \newenvironment{acknowledgement}
 {%
   \chapter*{\bupt@label@acknowledgement}
+  \addcontentsline{toc}{chapter}{\heiti\bupt@label@acknowledgement}
   \markboth{\bupt@label@acknowledgement}{}
 }
 {}
 
+\DeclareCaptionFont{kshu}{\kaishu}
+\captionsetup[figure]{
+  font={kshu},    % 字体：楷书
+  labelsep=space     % 标签与编号间用空格分隔（默认是冒号）
+}
+
+\raggedbottom
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\bupt@page@head{北京邮电大学{\bupt@meta@cdiscipline}{\bupt@meta@cdegree}学位论文}
-\def\bupt@label@covertitle{{\bupt@meta@cdegree}学位论文}
-\def\bupt@label@ecovertitle{{\bupt@meta@etype} for {\bupt@meta@edegree} Degree}
+\def\bupt@page@head{北京邮电大学本科毕业设计（论文）}
+\def\bupt@label@covertitle{本\hspace{0.5em}科\hspace{0.5em}毕\hspace{0.5em}业\hspace{0.5em}设\hspace{0.5em}计（论文）}
+\def\bupt@label@ecovertitle{Undergraduate Graduation Design (Thesis)}
 \def\bupt@label@cmajor{专\hspace{2em}业}
 \def\bupt@label@emajor{Subject}
 
 \def\bupt@label@cauthor{姓\hspace{2em}名}
 \def\bupt@label@eauthor{Candidate}
-\def\bupt@label@csupervisor{导\hspace{2em}师}
+\def\bupt@label@csupervisor{指导教师}
 \def\bupt@label@esupervisor{Supervisor}
 \def\bupt@label@cdepartment{学\hspace{2em}院}
 \def\bupt@label@edepartment{Institute}
 \def\bupt@label@studentid{学\hspace{2em}号}
 \def\bupt@label@estudentid{Student No.}
+\def\bupt@label@classid{班\hspace{2em}级}
+\def\bupt@label@eclassid{Class No.}
 \def\bupt@label@classlevel{密级}
 
 \def\bupt@label@ctitle{题目}
@@ -469,24 +478,22 @@
 \def\bupt@title@sep{：}
 \def\bupt@title@esep{:}
 
-\def\bupt@declaration@title{独创性（或创新性）声明}
+\def\bupt@declaration@title{北\hspace{0.5em}京\hspace{0.5em}邮\hspace{0.5em}电\hspace{0.5em}大\hspace{0.5em}学\par 本科毕业设计（论文）诚信声明}
 \long\def\bupt@declaration@body{%
-  本人声明所呈交的论文是本人在导师指导下进行的研究工作及取得的研究成果。%
-  尽我所知，除了文中特别加以标注和致谢中所罗列的内容以外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得北京邮电大学或其他教育机构的学位或证书而使用过的材料。%
-  与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。\par%
+  本人声明所呈交的毕业设计（论文），题目《\bupt@meta@ctitle》是本人在指导教师的指导下，独立进行研究工作所取得的成果。尽我所知，除了文中特别加以标注和致谢中所罗列的内容以外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得北京邮电大学或其他教育机构的学位或证书而使用过的材料。\par%
   申请学位论文与资料若有不实之处，本人承担一切相关责任。%
 }
 \def\bupt@authorization@title{关于论文使用授权的说明}
 \long\def\bupt@authorization@body{%
-  本人完全了解并同意北京邮电大学有关保留、使用学位论文的规定，即：北京邮电大学拥有以下关于学位论文的无偿使用权，具体包括：学校有权保留并向国家有关部门或机构送交论文，有权允许学位论文被查阅和借阅；%
-  学校可以公布学位论文的全部或部分内容，有权允许采用影印、缩印或其它复制手段保存、汇编学位论文，将学位论文的全部或部分内容编入有关数据库进行检索。%
+  本人完全了解并同意北京邮电大学有关保留、使用学位论文的规定，即：北京邮电大学拥有以下关于学位论文的无偿使用权，具体包括：学校有权保留并向国家有关部门或机构送交学位论文，有权允许学位论文被查阅和借阅；%
+  学校可以公布学位论文的全部或部分内容，有权允许采用影印、缩印或其它复制手段保存。汇编学位论文，将学位论文的全部或部分内容编入有关数据库进行检索。%
   （保密的学位论文在解密后遵守此规定）%
 }
 \def\bupt@label@authorsigniture{本人签名：}
 \def\bupt@label@supervisorsigniture{导师签名：}
 \def\bupt@label@date{日期：}
-\def\bupt@label@ckeywords{关键词：}
-\def\bupt@label@ekeywords{KEY WORDS:}
+\def\bupt@label@ckeywords{关键词\hspace{0.5em}}
+\def\bupt@label@ekeywords{KEY WORDS\hspace{1em}}
 \def\bupt@label@cabstract{摘\hspace{1em}要}
 \def\bupt@label@eabstract{ABSTRACT}
 \def\bupt@label@notations{符号说明}
@@ -506,3 +513,4 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \endinput
+ 
