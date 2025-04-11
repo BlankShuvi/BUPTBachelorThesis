@@ -443,12 +443,6 @@
 }
 {}
 
-\DeclareCaptionFont{kshu}{\kaishu}
-\captionsetup[figure]{
-  font={kshu},    % 字体：楷书
-  labelsep=space     % 标签与编号间用空格分隔（默认是冒号）
-}
-
 \raggedbottom
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
