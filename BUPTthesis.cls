@@ -331,7 +331,11 @@
   \fancyfoot[C]{\zihao{-5}\thepage}
   \renewcommand{\headrulewidth}{0.4pt}
 }
-\fancypagestyle{main}[front]
+\fancypagestyle{main}{%
+  \fancyhf{}
+  \fancyfoot[C]{\zihao{-5}\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
 \appto\frontmatter{\pagestyle{front}\pagenumbering{Roman}}
 \appto\mainmatter{\pagestyle{main}\pagenumbering{arabic}}
 
