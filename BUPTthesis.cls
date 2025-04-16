@@ -323,7 +323,7 @@
   \fancyfoot[C]{\zihao{-5}\thepage}
   \renewcommand{\headrulewidth}{0pt}
 }
-\fancypagestyle{main}{%
+\fancypagestyle{fancy}{%
   \fancyhf{}
   \fancyhead[C]{\zihao{-5}\bupt@page@head}
   % \fancyhead[CE]{\zihao{-5}\bupt@page@head}
@@ -331,6 +331,7 @@
   \fancyfoot[C]{\zihao{-5}\thepage}
   \renewcommand{\headrulewidth}{0.4pt}
 }
+\fancypagestyle{main}[front]
 \appto\frontmatter{\pagestyle{front}\pagenumbering{Roman}}
 \appto\mainmatter{\pagestyle{main}\pagenumbering{arabic}}
 
@@ -442,8 +443,6 @@
   \markboth{\bupt@label@acknowledgement}{}
 }
 {}
-
-\raggedbottom
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\bupt@page@head{北京邮电大学本科毕业设计（论文）}

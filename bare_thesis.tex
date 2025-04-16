@@ -24,10 +24,11 @@
 
 \frontmatter     % only in book class (roman page #s)
 \tableofcontents
-\thispagestyle{front} % 为tocloft包设置titles时，toc的第一页会被特殊处理，导致应用具有页眉的pagestyle，这里特殊处理强制应用无页眉的pagestyle
 % \listoffigures
 % \listoftables
 % \include{notations}
+
+\fancypagestyle{main}[fancy] % 为tocloft包设置titles时，toc的第一页会使用main样式，因此在正文前再设置页眉
 
 \mainmatter
 \include{ch_intro}
