@@ -61,6 +61,8 @@
 \newcommand{\cdate}[1]{\def\bupt@meta@cdate{#1}}
 \newcommand{\edate}[1]{\def\bupt@meta@edate{#1}}
 
+\def\bupt@mathfont{xits}
+
 
 % Load packages
 \RequirePackage{amsthm,thmtools}
@@ -71,14 +73,14 @@
   \RequirePackage[scr=euler]{mathalpha}
 }{}
 \RequirePackage{graphicx}
-\RequirePackage[per-mode=repeated-symbol,binary-units=true]{siunitx}
+\RequirePackage[per-mode=repeated-symbol]{siunitx}
 \RequirePackage{longtable}
 \RequirePackage{booktabs}
 \RequirePackage{tabu}
 \RequirePackage{emptypage}
 \ifthenelse{\equal{\bupt@mathfont}{xits}}{
   \RequirePackage{fontspec}
-  \setmainfont{TeX Gyre Termes}
+  \setmainfont{Times New Roman}
   \RequirePackage{unicode-math}
   \setmathfont{XITS Math}
   \setmathfont[range={cal,bfcal},StylisticSet=1]{XITS Math}
@@ -118,6 +120,7 @@
   url=false,
   eprint=false,
 ]{biblatex}
+\AtNextBibliography{\small}
 \iftoggle{chapterbib}
 {%
   \newcommand{\chapterbib}{\printbibliography[heading=subbibintoc]}
