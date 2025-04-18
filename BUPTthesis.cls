@@ -61,8 +61,6 @@
 \newcommand{\cdate}[1]{\def\bupt@meta@cdate{#1}}
 \newcommand{\edate}[1]{\def\bupt@meta@edate{#1}}
 
-\def\bupt@mathfont{xits}
-
 
 % Load packages
 \RequirePackage{amsthm,thmtools}
