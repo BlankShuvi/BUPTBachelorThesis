@@ -2,9 +2,11 @@
 
 # 关于
 
-在本项目之前已有多个为北邮本科生毕业设计（论文）的LaTeX文档类，如[BUPTBachelorThesis](https://github.com/jackfiled/BUPTBachelorThesis)。但经过测试，发现该文档类仍然存在着一些问题。例如，该文档类未能在LaTeX下实现封面和诚信声明，而是采用在Word中填写，并使用`pdf`格式导入项目中；并且，在Overleaf平台上使用时，需要额外的调整方可正常编译，这为学生在使用该项目时带来了不必要的额外工作量。本项目基于qcts33前辈建立的BUPTthesis-ctex文档类，并根据北京邮电大学教务处发布的《北京邮电大学2025届本科毕业设计（论文）指导手册》中的格式要求，实现了封面到致谢内容。原项目在Overleaf上被收录为模板，经历了时间的考验，且整体结构也更为简单、清晰，功能更加丰富、现代，本文档类同样也能在Overleaf平台上实现几乎开箱即用的体验。此外，本模板已通过教务处要求的自动格式检测平台（论无忧）的检测，仅存在（由检测平台机器人无法正确识别关键字导致的）一个错误。
+在本项目之前已有多个为北邮本科生毕业设计（论文）的LaTeX文档类，如[BUPTBachelorThesis](https://github.com/jackfiled/BUPTBachelorThesis)。但经过测试，发现该文档类仍然存在着一些问题。例如，该文档类未能在LaTeX下实现封面和诚信声明，而是采用在Word中填写，并使用`pdf`格式导入项目中；并且，在Overleaf平台上使用时，需要额外的调整方可正常编译，这为学生在使用该项目时带来了不必要的额外工作量。本项目基于qcts33前辈建立的BUPTthesis-ctex文档类，并根据北京邮电大学教务处发布的《北京邮电大学2025届本科毕业设计（论文）指导手册》中的格式要求，实现了封面到致谢内容。原项目在Overleaf上被收录为模板，经历了时间的考验，且整体结构也更为简单、清晰，功能更加丰富、现代，本文档类同样也能在Overleaf平台上实现几乎开箱即用的体验。此外，本文档类已通过教务处要求的自动格式检测平台（论无忧）的检测，仅存在（由检测平台机器人无法正确识别关键字导致的）一个错误。
 
-本模板使用了`xits`选项，并修改了西文字体为Times New Roman，这是为了设置并正常加载Times New Roman以通过自动格式检测平台（论无忧）的检测。如果你介意在文章中使用非开源字体，你可以考虑将`BUPTthesis.cls`中的Times New Roman相关内容替换为并使用TeX Gyre Termes，或将`xits`选项更改为`txmath`（不建议这么做，尤其是如果您正在使用`XeLaTeX`或`LuaLaTeX`作为编译引擎时）。
+本文档类使用了`xits`选项，并修改了西文字体为Times New Roman，这是为了设置并正常加载Times New Roman以通过自动格式检测平台（论无忧）的检测。如果你介意在文章中使用非开源字体，你可以考虑将`BUPTthesis.cls`中的Times New Roman相关内容替换为并使用TeX Gyre Termes，或将`xits`选项更改为`txmath`（不建议这么做，尤其是如果您正在使用`XeLaTeX`或`LuaLaTeX`作为编译引擎时）。
+
+本文档类已经基于教务给定的要求，为论文中需要使用加粗的位置使用了伪粗体（伪粗体的实现见`cjkfakebold.sty`，没有使用`AutoFakeBold`选项是由于其在`XeLaTeX`下会导致粗体汉字无法被正确复制，感谢[Stack Exchange上的用户Leo Liu](https://tex.stackexchange.com/questions/180168/fontspec-xecjk-autofakebold-and-copyable-chinese-characters-in-pdf)提供的解决方案）。注意该方案可能会导致部分字符（如标点符号）的间距出现问题，但考虑到伪粗体在论文中实际使用的场合，认为该问题是可以接受的。**经测试在部分场合下使用`\textbf`也能实现伪粗体加粗，稍后可能会调整粗体的实现方式。**
 
 以下为原项目（[BUPTthesis-ctex](https://github.com/qcts33/BUPTthesis-ctex)）的`README.md`文件中的内容，感谢qcts33前辈对该项目做出的巨大贡献。
 
