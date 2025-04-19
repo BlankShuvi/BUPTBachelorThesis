@@ -374,7 +374,7 @@
 	\input{cover.tex}
 	\renewcommand\maketitle{%
 	 \makechinesetitle
-	 \makeenglishtitle
+	 % \makeenglishtitle
 	 \iftoggle{review}{\cleardoublepage}{\makedeclaration}
   }
   \toggletrue{addcover}
@@ -511,4 +511,3 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \endinput
- 
