@@ -24,27 +24,29 @@
   \end{center}
   \newlength\bupt@titlewidth
   % title
-  \vspace{0.5cm}
+  \vspace{1cm}
+  % \begin{center}
+  %   \zihao{3}
+  %   \heiti
+  %   \begin{tabular}{lp{13\ccwd}}
+  %     \CJKfakebold{\bupt@label@ctitle\bupt@title@sep} & \CJKfakebold{\uline{\bupt@meta@ctitle\hfill}}
+  %   \end{tabular}
+  % \end{center}
   \begin{center}
-    \zihao{-2}
+    \zihao{3}
     \settowidth{\bupt@titlewidth}{\CJKfakebold{\heiti\bupt@meta@ctitle}}
     % \setlength{\extrarowheight}{10mm}
     \setlength{\arrayrulewidth}{0.5bp}
-    \begin{tabular}{@{}p{36bp}@{\bupt@title@sep}p{95mm}@{}}
-      \CJKfakebold{\heiti\bupt@label@ctitle} & %
-      \parbox[t]{95mm}{%
+    \begin{tabular}{@{}l@{}p{13\ccwd}@{}}
+      \CJKfakebold{\heiti\bupt@label@ctitle\bupt@title@sep} & %
+      \parbox[t]{13\ccwd}{%
         \centering%
-        \newcommand\titlebreak{\\\global\let\bupt@long@title\@empty}
-        \rule[-10bp]{95mm}{0.5bp}\\[-27bp]
+        \rule[-4bp]{13\ccwd}{0.5bp}\\[-28.75bp]
         \CJKfakebold{\heiti\bupt@meta@ctitle}%
       }%
       \\%
-      \ifx\bupt@long@title\@empty
+      \ifdim\bupt@titlewidth>13\ccwd
         \cline{2-2}
-      \else
-        \ifdim\bupt@titlewidth>95mm
-        \cline{2-2}
-        \fi
       \fi
     \end{tabular}
   \end{center}
@@ -53,12 +55,12 @@
     \zihao{3}
     \setlength\extrarowheight{5pt}
     \begin{tabular}{lc}
-      \CJKfakebold{\bupt@label@cauthor}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@cauthor}\hfill} \\
-      \CJKfakebold{\bupt@label@cdepartment}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@cdepartment}\hfill} \\
-      \CJKfakebold{\bupt@label@cmajor}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@cmajor}\hfill} \\
-      \CJKfakebold{\bupt@label@classid}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@classid}\hfill} \\
-      \CJKfakebold{\bupt@label@studentid}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@studentid}\hfill} \\
-      \CJKfakebold{\bupt@label@csupervisor}\bupt@title@sep & \uline{\hfill\CJKfakebold{\bupt@meta@csupervisor}\hfill} \\
+      \CJKfakebold{\bupt@label@cauthor}\bupt@title@sep & \CJKfakebold{\uline{\hfill\bupt@meta@cauthor\hfill}} \\
+      \CJKfakebold{\bupt@label@cdepartment}\bupt@title@sep & \CJKfakebold{\uline{\hfill\bupt@meta@cdepartment\hfill}} \\
+      \CJKfakebold{\bupt@label@cmajor}\bupt@title@sep & \CJKfakebold{\uline{\hfill\bupt@meta@cmajor\hfill}} \\
+      \CJKfakebold{\bupt@label@classid}\bupt@title@sep & \textbf{\uline{\hfill\bupt@meta@classid\hfill}} \\
+      \CJKfakebold{\bupt@label@studentid}\bupt@title@sep & \textbf{\uline{\hfill\bupt@meta@studentid\hfill}} \\
+      \CJKfakebold{\bupt@label@csupervisor}\bupt@title@sep & \CJKfakebold{\uline{\hfill\bupt@meta@csupervisor\hfill}} \\
     \end{tabular}
   \end{center}
   \vspace{0.5cm}

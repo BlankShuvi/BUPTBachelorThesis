@@ -40,6 +40,7 @@
   subsubsection/format = \indent\zihao{-4}\heiti\CJKfakebold,
 }
 \newcommand{\refname}{\bibname}
+\RequirePackage{xeCJKfntef}
 % \AtEndOfClass{\input{BUPTthesis.cfg}}
 
 % define names
