@@ -38,6 +38,7 @@
   section/format = \zihao{4}\heiti\CJKfakebold,
   subsection/format = \indent\zihao{-4}\heiti\CJKfakebold,
   subsubsection/format = \indent\zihao{-4}\heiti\CJKfakebold,
+  appendix/number = \arabic{chapter},
 }
 \newcommand{\refname}{\bibname}
 \RequirePackage{xeCJKfntef}
