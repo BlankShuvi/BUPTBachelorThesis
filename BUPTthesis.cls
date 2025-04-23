@@ -193,7 +193,7 @@
 \newcommand{\creflastconjunction}{~和~}
 \newcommand{\crefpairconjunction}{~和~}
 
-\crefformat{chapter}{第#2\zhnumber{#1}#3章}
+\crefformat{chapter}{第#2#1#3章}
 \crefrangeformat{chapter}{第~#3#1#4~-~#5#2#6~章}
 
 \crefformat{section}{第~#2#1#3~节}
