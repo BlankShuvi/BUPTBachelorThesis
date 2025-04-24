@@ -92,8 +92,14 @@
 \RequirePackage{subcaption}
 \RequirePackage{floatrow}
 \DeclareCaptionFont{kaiti}{\zihao{5}\kaishu}
-\captionsetup[figure]{font=kaiti}
-\captionsetup[table]{font=kaiti}
+\captionsetup[figure]{
+  labelsep=quad,
+  font=kaiti,
+}
+\captionsetup[table]{
+  labelsep=quad,
+  font=kaiti
+}
 \floatsetup[table]{capposition=top}
 \captionsetup[subfigure]{
   justification=raggedright,
