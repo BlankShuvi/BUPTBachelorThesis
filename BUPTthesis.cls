@@ -30,14 +30,14 @@
   part/pagestyle = empty,
   chapter/tocline = \CTEXifname{\protect\numberline{\heiti\CTEXthechapter\hspace{.3em}}}{}\heiti#2,
   chapter = {%
-    format = \zihao{3}\heiti\centering\CJKfakebold,
+    format = \zihao{3}\heiti\centering\CJKfakebold\bfseries,
     pagestyle = main,
     beforeskip = 0pt,
     afterskip = 40pt,
   },
-  section/format = \zihao{4}\heiti\CJKfakebold,
-  subsection/format = \indent\zihao{-4}\heiti\CJKfakebold,
-  subsubsection/format = \indent\zihao{-4}\heiti\CJKfakebold,
+  section/format = \zihao{4}\heiti\CJKfakebold\bfseries,
+  subsection/format = \indent\zihao{-4}\heiti\CJKfakebold\bfseries,
+  subsubsection/format = \indent\zihao{-4}\heiti\CJKfakebold\bfseries,
   appendix/number = \arabic{chapter},
 }
 \newcommand{\refname}{\bibname}
