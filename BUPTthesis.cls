@@ -13,6 +13,7 @@
 \DeclareBoolOption{review}
 \DeclareBoolOption{chapterbib}
 \DeclareBoolOption{gls}
+\DeclareBoolOption{noboldheiti}
 \ProcessKeyvalOptions*
 
 \newtoggle{gls}
@@ -21,6 +22,16 @@
 \ifthenelse{\boolean{bupt@review}}{\toggletrue{review}}{}
 \newtoggle{chapterbib}
 \ifthenelse{\boolean{bupt@chapterbib}}{\toggletrue{chapterbib}}{}
+\newtoggle{noboldheiti}
+\ifthenelse{\boolean{bupt@noboldheiti}}{\toggletrue{noboldheiti}}{}
+
+\iftoggle{noboldheiti}
+{%
+\newcommand{\bheiti}[1]{#1}
+}
+{%
+\newcommand{\bheiti}[1]{\CJKfakebold{#1}}
+}
 
 % config ctex
 \LoadClass[a4paper,oneside,UTF8,zihao=-4,scheme=chinese,linespread=1.5]{ctexbook}
@@ -30,14 +41,14 @@
   part/pagestyle = empty,
   chapter/tocline = \CTEXifname{\protect\numberline{\heiti\CTEXthechapter\hspace{.3em}}}{}\heiti#2,
   chapter = {%
-    format = \zihao{3}\heiti\centering\bfseries\CJKfakebold,
+    format = \zihao{3}\heiti\centering\bfseries\bheiti,
     pagestyle = main,
     beforeskip = 0pt,
     afterskip = 40pt,
   },
-  section/format = \zihao{4}\heiti\bfseries\CJKfakebold,
-  subsection/format = \indent\zihao{-4}\heiti\bfseries\CJKfakebold,
-  subsubsection/format = \indent\zihao{-4}\heiti\bfseries\CJKfakebold,
+  section/format = \zihao{4}\heiti\bfseries\bheiti,
+  subsection/format = \indent\zihao{-4}\heiti\bfseries\bheiti,
+  subsubsection/format = \indent\zihao{-4}\heiti\bfseries\bheiti,
   appendix/number = \arabic{chapter},
 }
 \newcommand{\refname}{\bibname}
@@ -401,7 +412,7 @@
 	\cleardoublepage
   \pdfbookmark[0]{\bupt@label@cabstract}{abstract}
   \begin{center}
-    {\zihao{3}\CJKfakebold{\bfseries\heiti\bupt@meta@ctitle}}
+    {\zihao{3}\bheiti{\bfseries\heiti\bupt@meta@ctitle}}
     \vskip 20pt
     {\zihao{-3}\CJKfakebold{\heiti\bupt@label@cabstract}}
   \end{center}
