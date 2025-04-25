@@ -462,6 +462,28 @@
   \renewcommand{\heiti}{} % 在生成超链接时忽略字体设置命令
 }
 
+\RequirePackage{tikz}
+\usetikzlibrary{positioning, calc}
+
+\tikzset{
+    subfiglabel/.style={
+        anchor=north west,
+        text opacity=1,
+        inner sep=1pt,
+        font=\small
+    }
+}
+
+\newcommand{\subfigwithlabel}[1]{% 创建\subfigwithlabel命令以显示要求的子图标号
+    \begin{tikzpicture}[
+        inner sep=0pt,
+        baseline=(imageNode.base) 
+      ]
+        \node (imageNode) {#1};
+        \node[subfiglabel] at (imageNode.north west) {\thesubfigure};
+    \end{tikzpicture}%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\bupt@page@head{北京邮电大学本科毕业设计（论文）}
 \def\bupt@label@covertitle{本\hspace{0.5em}科\hspace{0.5em}毕\hspace{0.5em}业\hspace{0.5em}设\hspace{0.5em}计（论文）}

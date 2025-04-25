@@ -2,11 +2,49 @@
 
 # 关于
 
-在本项目之前已有多个为北邮本科生毕业设计（论文）的LaTeX文档类，如[BUPTBachelorThesis](https://github.com/jackfiled/BUPTBachelorThesis)。但经过测试，发现该文档类仍然存在着一些问题。例如，该文档类未能在LaTeX下实现封面和诚信声明，而是采用在Word中填写，并使用`pdf`格式导入项目中；并且，在Overleaf平台上使用时，需要额外的调整方可正常编译，这为学生在使用该项目时带来了不必要的额外工作量。本项目基于qcts33前辈建立的BUPTthesis-ctex文档类，并根据北京邮电大学教务处发布的《北京邮电大学2025届本科毕业设计（论文）指导手册》中的格式要求，实现了封面到致谢内容。原项目在Overleaf上被收录为模板，经历了时间的考验，且整体结构也更为简单、清晰，功能更加丰富、现代，本文档类同样也能在Overleaf平台上实现几乎开箱即用的体验。此外，本文档类已通过教务处要求的自动格式检测平台（论无忧）的检测，仅存在（由检测平台机器人无法正确识别关键字导致的）一个错误。
+在本项目之前已有多个为北邮本科生毕业设计（论文）的LaTeX文档类，如[BUPTBachelorThesis](https://github.com/jackfiled/BUPTBachelorThesis)。但经过测试，发现该文档类仍然存在着一些问题。例如，该文档类未能在LaTeX下实现封面和诚信声明，而是采用在Word中填写，并使用`pdf`格式导入项目中；并且，在Overleaf平台上使用时，需要额外的调整方可正常编译，这为学生在使用该项目时带来了不必要的额外工作量。本项目基于qcts33前辈建立的BUPTthesis-ctex文档类，并根据北京邮电大学教务处发布的《北京邮电大学2025届本科毕业设计（论文）指导手册》中的格式要求，实现了封面到致谢内容。原项目在Overleaf上被收录为模板，经历了时间的考验，且整体结构也更为简单、清晰，功能更加丰富、现代，本文档类同样也能在Overleaf平台上实现几乎开箱即用的体验。此外，本文档类已通过教务处要求的自动格式检测平台（论无忧）的检测，并且不存在任何错误。
 
 本文档类使用了`xits`选项，使用`unicode-math`包指定数学字体，并修改了西文字体为Times New Roman，这是为了设置并正常加载Times New Roman以通过自动格式检测平台（论无忧）的检测。如果你介意在文章中使用非开源字体，你可以考虑将`BUPTthesis.cls`中的Times New Roman相关内容替换为TeX Gyre Termes，或将`xits`选项更改为`txmath`（不建议这么做，尤其是如果您正在使用`XeLaTeX`或`LuaLaTeX`作为编译引擎时）。
 
-本文档类已经基于教务给定的要求，为论文中需要使用加粗的位置使用了伪粗体（伪粗体的实现见`cjkfakebold.sty`，没有使用`AutoFakeBold`选项是由于其在`XeLaTeX`下会导致粗体汉字无法被正确复制，感谢[Stack Exchange上的用户Leo Liu提供的解决方案](https://tex.stackexchange.com/a/180448)）。注意该方案可能会导致部分字符（如标点符号）的间距出现问题，但考虑到伪粗体在论文中实际使用的场合，认为该问题是可以接受的。**经测试在部分场合下使用`\textbf`也能实现伪粗体加粗，稍后可能会调整粗体的实现方式。**
+本文档类已经基于教务给定的要求，为论文中需要使用加粗的位置使用了伪粗体（伪粗体的实现见`cjkfakebold.sty`，没有使用`AutoFakeBold`选项是由于其在`XeLaTeX`下会导致粗体汉字无法被正确复制，感谢[Stack Exchange上的用户Leo Liu提供的解决方案](https://tex.stackexchange.com/a/180448)）。注意该方案可能会导致部分字符（如标点符号）的间距出现问题，但考虑到伪粗体在论文中实际使用的场合，认为该问题是可以接受的。本文档类中`\textbf`对中文内容的默认行为是使用黑体，如果你希望使用伪粗体，请使用`\CJKfakebold`命令，用法与`\textbf`类似。
+
+为满足指导手册中对子图格式的要求，文档类中使用`tikz`包实现了`\subfigwithlabel`命令，该命令会为引用的图左上角加上当前`subfigure`的编号。由于作者暂时无法实现自动调整子图图题至主图图题下方，如果要实现与教务要求中完全一致的格式，你需要手动调整图题，使得子图图题不显示，并在主图图题中显示子图图题，如以下示例所示：
+
+```tex
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \phantomsubcaption % 创建子图编号而不显示子图图题，该命令是必要的
+        \label{fig:subfig_a} % \label需要在\subfigwithlabel前设置，使得\subfigwithlabel命令能够获取到当前子图编号
+        \centering
+        \subfigwithlabel{%
+            \includegraphics[width=\linewidth]{example-image-a} % 这里插入你需要的图片
+        }
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth} % 同上
+        \phantomsubcaption
+        \label{fig:subfig_b}
+        \centering
+        \subfigwithlabel{%
+            \includegraphics[width=\linewidth]{example-image-b}
+        }
+    \end{subfigure}
+    \caption{
+        \centering
+        图名
+        \\
+        \subref{fig:subfig_a} 分图名1；
+        \subref{fig:subfig_b} 分图名2
+    }
+    \label{fig:main_figure} % 这里设置主图的标签
+\end{figure}
+```
+
+实现的效果如下图所示：
+
+![子图加标签示例](https://s2.loli.net/2025/04/25/QSgc2OB1WFLTMra.png)
+
+如果你对此处子图的实现有更好的想法，欢迎提出issue或PR！
 
 以下为原项目（[BUPTthesis-ctex](https://github.com/qcts33/BUPTthesis-ctex)）的`README.md`文件中的内容，感谢qcts33前辈对该项目做出的巨大贡献。
 
