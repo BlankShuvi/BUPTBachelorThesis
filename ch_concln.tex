@@ -51,32 +51,43 @@
     \begin{subfigure}[b]{.5\linewidth}
         % \centering\large A
         \centering
-        \rule{2cm}{2cm}
-        % \includegraphics[width=\linewidth]{logo/buptseal}
+        \includegraphics[width=.5\linewidth]{example-image-a}
         \caption{一个子图}\label{fig:1a}
     \end{subfigure}%
     \begin{subfigure}[b]{.5\linewidth}
         \centering
-        \rule{2cm}{2cm}
+        \includegraphics[width=.5\linewidth]{example-image-b}
         \caption{另一个子图}\label{fig:1b}
     \end{subfigure}
     \caption[A figure 图片测试]{A figure 图片测试\cite{CITATION_ARTICLE}}\label{fig:1}
 \end{figure}
 
 \begin{figure}
-    \ffigbox[\linewidth]
-    {\begin{subfloatrow}\useFCwidth
-        \fcapside[\FBwidth]
-        {\rule{4cm}{2cm}}
-        {\caption{}\label{fig:2a}}
-        \fcapside[\FBwidth]
-        {\rule{4cm}{2cm}}
-        {\caption{}\label{fig:2b}}
-    \end{subfloatrow}}
-    {
-        \caption[A figure 图片测试]{A figure 图片测试\cite{CITATION_ARTICLE}，\subref{fig:2a} 一个子图，\subref{fig:2b} 另一个子图}
-        \label{fig:2}
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \phantomsubcaption % 创建子图编号而不显示子图图题，该命令是必要的
+        \label{fig:2a} % \label需要在\subfigwithlabel前设置，使得\subfigwithlabel命令能够获取到当前子图编号
+        \centering
+        \subfigwithlabel{%
+            \includegraphics[width=\linewidth]{example-image-a} % 这里插入你需要的图片
+        }
+    \end{subfigure}
+    \begin{subfigure}{0.45\linewidth} % 同上
+        \phantomsubcaption
+        \label{fig:2b}
+        \centering
+        \subfigwithlabel{%
+            \includegraphics[width=\linewidth]{example-image-b}
+        }
+    \end{subfigure}
+    \caption{
+        \centering
+        A figure 图片测试
+        \\
+        \subref{fig:2a} 一个子图；
+        \subref{fig:2b} 另一个子图
     }
+    \label{fig:2} % 这里设置主图的标签
 \end{figure}
 
 本文档类提供两桶插入子图的方式，一种是传统的样式，如包含\cref{fig:1a,fig:1b}的\cref{fig:1}所示。
