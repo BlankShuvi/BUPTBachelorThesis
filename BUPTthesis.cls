@@ -401,7 +401,7 @@
 	\cleardoublepage
   \pdfbookmark[0]{\bupt@label@cabstract}{abstract}
   \begin{center}
-    {\zihao{3}\CJKfakebold{\heiti\bupt@meta@ctitle}}
+    {\zihao{3}\CJKfakebold{\bfseries\heiti\bupt@meta@ctitle}}
     \vskip 20pt
     {\zihao{-3}\CJKfakebold{\heiti\bupt@label@cabstract}}
   \end{center}
