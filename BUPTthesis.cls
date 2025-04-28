@@ -309,14 +309,12 @@
       description={#3},%
       text={#2},%
       descriptionplural={#3\acrpluralsuffix},%
-      first={#2}, %{#3 (#2)},%
+      first={{#4} ({#3}, {#2})},
       plural={#2\acrpluralsuffix},%
-      firstplural={\@glo@descplural\space (\@glo@plural)},%
+      firstplural={#3\acrpluralsuffix\space ({#2}\acrpluralsuffix)},%
       symbol={#4}%
     }%
   }
-  % 重载 \cs{glsdisplayfirst} 命令
-  % \renewcommand{\glsdisplayfirst}[4]{{#3} ({#2}, {#1})}
   \renewcommand{\glsdefaulttype}{acronym}
   \renewcommand{\glossarysection}[2][\@gls@title]{\chapter{#2}}
   \newcommand{\tableofacronyms}{\printglossary[type=\acronymtype]}
