@@ -289,7 +289,7 @@
 % glossaries
 \iftoggle{gls}
 {
-  \RequirePackage[nomain,nogroupskip,toc=false,section=chapter]{glossaries}
+  \RequirePackage[nomain,nogroupskip,toc=false,section=chapter]{glossaries}[=v4.49]
   \newglossarystyle{bupt@acronyms@style}{  % 设置自定义缩略语表格式
     \setglossarystyle{long}                % 以 long 样式为基础
     \renewcommand*{\glossentry}[2]{%
@@ -309,12 +309,14 @@
       description={#3},%
       text={#2},%
       descriptionplural={#3\acrpluralsuffix},%
-      first={{#4} ({#3}, {#2})},
+      first={#2}, %{#3 (#2)},%
       plural={#2\acrpluralsuffix},%
-      firstplural={#3\acrpluralsuffix\space ({#2}\acrpluralsuffix)},%
+      firstplural={\@glo@descplural\space (\@glo@plural)},%
       symbol={#4}%
     }%
   }
+  % 重载 \cs{glsdisplayfirst} 命令
+  \renewcommand{\glsdisplayfirst}[4]{{#3} ({#2}, {#1})}
   \renewcommand{\glsdefaulttype}{acronym}
   \renewcommand{\glossarysection}[2][\@gls@title]{\chapter{#2}}
   \newcommand{\tableofacronyms}{\printglossary[type=\acronymtype]}
