@@ -495,6 +495,8 @@
     \end{tikzpicture}%
 }
 
+\RequirePackage{placeins}
+
 \newcommand{\setappendixformat}{%
   \chapter*{\appendixname}
   \addcontentsline{toc}{chapter}{\heiti\appendixname}%
@@ -502,7 +504,7 @@
   \makeatletter
   \ctexset{%
     chapter = {
-      break = \addpenalty{\@secpenalty},
+      break = \addpenalty{\@secpenalty}\FloatBarrier,
       format = \zihao{4}\heiti\bfseries\bheiti,
       beforeskip = 3.5ex plus 1ex minus .2ex,
       afterskip = 2.3ex plus .2ex,
@@ -517,6 +519,9 @@
 }
 
 \newcommand{\unsetappendixformat}{%
+    \hypersetup{bookmarksdepth=2}
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+
     \makeatletter
     \ctexset{%
         chapter = {
@@ -527,9 +532,6 @@
         },
     }
     \makeatother
-
-    \hypersetup{bookmarksdepth=2}
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
