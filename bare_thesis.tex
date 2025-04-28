@@ -36,14 +36,15 @@
 
 \mainbib
 
-
-\appendix
 \nottoggle{review}{\include{thanks}}{}
 
-\renewcommand{\thechapter}{\arabic{chapter}}
+\appendix
+\setappendixformat
 
-\include{app_abbreviation}
-% \include{app_lhospital}
+\input{app_abbreviation}
+\input{app_lhospital}
+
+\unsetappendixformat
 \backmatter
 % %% 在读期间论文发表情况
 % \include{pubs}

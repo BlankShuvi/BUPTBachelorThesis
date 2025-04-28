@@ -289,7 +289,7 @@
 % glossaries
 \iftoggle{gls}
 {
-  \RequirePackage[nomain,nogroupskip,toc,section=chapter]{glossaries}
+  \RequirePackage[nomain,nogroupskip,toc=false,section=chapter]{glossaries}
   \newglossarystyle{bupt@acronyms@style}{  % 设置自定义缩略语表格式
     \setglossarystyle{long}                % 以 long 样式为基础
     \renewcommand*{\glossentry}[2]{%
@@ -493,6 +493,43 @@
         \node (imageNode) {#1};
         \node[subfiglabel] at (imageNode.north west) {\thesubfigure};
     \end{tikzpicture}%
+}
+
+\newcommand{\setappendixformat}{%
+  \chapter*{\appendixname}
+  \addcontentsline{toc}{chapter}{\heiti\appendixname}%
+
+  \makeatletter
+  \ctexset{%
+    chapter = {
+      break = \addpenalty{\@secpenalty},
+      format = \zihao{4}\heiti\bfseries\bheiti,
+      beforeskip = 3.5ex plus 1ex minus .2ex,
+      afterskip = 2.3ex plus .2ex,
+    },
+  }
+  \makeatother
+
+  \renewcommand{\thechapter}{\arabic{chapter}}
+
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+  \hypersetup{bookmarksdepth=-1}
+}
+
+\newcommand{\unsetappendixformat}{%
+    \makeatletter
+    \ctexset{%
+        chapter = {
+            break = \if@openright\cleardoublepage\else\clearpage\fi,
+            format = \zihao{3}\heiti\centering\bfseries\bheiti,
+            beforeskip = 0pt,
+            afterskip = 40pt,
+        },
+    }
+    \makeatother
+
+    \hypersetup{bookmarksdepth=2}
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
