@@ -316,7 +316,7 @@
     }%
   }
   % 重载 \cs{glsdisplayfirst} 命令
-  \renewcommand{\glsdisplayfirst}[4]{{#3} ({#2}, {#1})}
+  % \renewcommand{\glsdisplayfirst}[4]{{#3} ({#2}, {#1})}
   \renewcommand{\glsdefaulttype}{acronym}
   \renewcommand{\glossarysection}[2][\@gls@title]{\chapter{#2}}
   \newcommand{\tableofacronyms}{\printglossary[type=\acronymtype]}
@@ -337,13 +337,13 @@
 \preto\listoftables{\cleardoublepage\pdfbookmark[0]{\listtablename}{lot}}
 
 % define heading
-\usepackage{fancyhdr}
+\RequirePackage{fancyhdr}
 \fancypagestyle{front}{%
   \fancyhf{}
   \fancyfoot[C]{\zihao{-5}\thepage}
   \renewcommand{\headrulewidth}{0pt}
 }
-\fancypagestyle{fancy}{%
+\fancypagestyle{main}{%
   \fancyhf{}
   \fancyhead[C]{\zihao{-5}\bupt@page@head}
   % \fancyhead[CE]{\zihao{-5}\bupt@page@head}
@@ -351,13 +351,8 @@
   \fancyfoot[C]{\zihao{-5}\thepage}
   \renewcommand{\headrulewidth}{0.4pt}
 }
-\fancypagestyle{main}{%
-  \fancyhf{}
-  \fancyfoot[C]{\zihao{-5}\thepage}
-  \renewcommand{\headrulewidth}{0pt}
-}
-\appto\frontmatter{\pagestyle{front}\pagenumbering{Roman}}
-\appto\mainmatter{\pagestyle{main}\pagenumbering{arabic}}
+\appto\frontmatter{\pagestyle{front}\ctexset{chapter/pagestyle=front}\pagenumbering{Roman}}
+\appto\mainmatter{\pagestyle{main}\ctexset{chapter/pagestyle=main}\pagenumbering{arabic}}
 
 
 % 使用enumitem宏包配制列表环境
