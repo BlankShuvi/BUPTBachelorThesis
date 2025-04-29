@@ -133,6 +133,7 @@
   style=gb7714-2015,
   gbnamefmt=familyahead,
   gbpub=false,
+  gbpunctin=false,
   doi=false,
   url=false,
   eprint=false,
