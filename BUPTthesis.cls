@@ -331,6 +331,11 @@
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftchapfont}{\normalfont}
 \renewcommand{\cftchappagefont}{\normalfont}
+\renewcommand{\cftdot}{$\cdot$}
+\renewcommand{\cftdotsep}{1.5}
+\setlength\cftbeforechapskip{0em}
+\setlength\cftbeforesecskip{0em}
+\setlength\cftbeforesubsecskip{0em}
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
 \preto\tableofcontents{\cleardoublepage\pdfbookmark[0]{\contentsname}{toc}}
