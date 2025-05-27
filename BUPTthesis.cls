@@ -326,7 +326,7 @@
 \RequirePackage[paper=a4paper,margin=25mm,
   head=4.22mm,
   headsep=5.78mm,
-  footskip=6.82mm,
+  footskip=10mm,
   hcentering]{geometry}
 
 % config toc lof lot
