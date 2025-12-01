@@ -323,11 +323,14 @@
   \newcommand{\tableofacronyms}{\printglossary[type=\acronymtype]}
 }{\relax}
 % config page
-\RequirePackage[paper=a4paper,margin=25mm,
+\RequirePackage[
+  paper=a4paper,
+  margin=25mm,
   head=4.22mm,
   headsep=5.78mm,
   footskip=10mm,
-  hcentering]{geometry}
+  hcentering
+]{geometry}
 
 % config toc lof lot
 \RequirePackage[titles]{tocloft}
