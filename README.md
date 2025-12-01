@@ -29,9 +29,9 @@
 | :--------------------------------: | :------------------------------: |
 | ![图片与子图](figs/subfigures.png) | ![参考文献](figs/references.png) |
 
-|  [附录](app_lhospital.tex)   |       |
-| :--------------------------: | :---: |
-| ![附录](figs/appendices.png) |       |
+|    [致谢](thanks.tex)    |  [附录](app_lhospital.tex)   |
+| :----------------------: | :--------------------------: |
+| ![致谢](figs/thanks.png) | ![附录](figs/appendices.png) |
 
 ## 使用说明
 
