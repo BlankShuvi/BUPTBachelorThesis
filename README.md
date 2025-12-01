@@ -1,34 +1,43 @@
 **警告：本项目非官方实现，出现问题概不负责。**
 
-# 关于
+# 北京邮电大学本科毕业设计$\LaTeX$模板 | BUPTBachelorThesis
 
-在本项目之前已有多个为北邮本科生毕业设计（论文）的LaTeX文档类，如[BYRIO/BUPTBachelorThesis](https://github.com/BYRIO/BUPTBachelorThesis)和[jackfiled/BUPTBachelorThesis](https://github.com/jackfiled/BUPTBachelorThesis)。但经过测试，发现该文档类仍然存在着一些问题。例如，该文档类未能在LaTeX下实现封面和诚信声明，而是采用在Word中填写，并使用`pdf`格式导入项目中；并且，在Overleaf平台上使用时，需要额外的调整方可正常编译，这为用户在使用该项目时带来了不必要的额外工作量；此外，这些文档类的附录不具有自动编号功能，用户需要手动设置附录序号，类似于`\section*{附录1\quad{}...}`，为用户编写文章引入了更多的负担。
+## 简介
 
-本项目基于[qcts33](https://github.com/qcts33)前辈建立的[BUPTthesis-ctex](https://github.com/qcts33/BUPTthesis-ctex)文档类，原项目在Overleaf上被收录为模板，经历了时间的考验，且整体结构也更为简单、清晰，功能更加丰富、现代，本文档类同样也能在Overleaf平台上实现几乎开箱即用的体验。本项目并根据北京邮电大学教务处发布的《北京邮电大学2025届本科毕业设计（论文）指导手册》中的格式要求，实现了封面到附录部分的内容。相比已有的本科毕业设计（论文）文档类，本项目使用分散子文件的形式组织各个章节，附录具有自动编号功能，还从原文档类继承了包括自动缩略语表在内的丰富功能，提升了用户使用本文档类编写论文的体验。此外，本文档类已通过教务处要求的自动格式检测平台（论无忧）的检测，并且不存在任何错误，不存在模板本身导致的警告。
+本项目为基于北京邮电大学教务处发布的《北京邮电大学2025届本科毕业设计（论文）指导手册》中的格式要求编写的中文$\LaTeX$模板。
 
-本文档类使用了`xits`选项，使用`unicode-math`包指定数学字体，并修改了西文字体为Times New Roman，这是为了设置并正常加载Times New Roman以通过自动格式检测平台（论无忧）的检测。如果你介意在文章中使用非开源字体，你可以考虑将`BUPTthesis.cls`中的Times New Roman相关内容替换为TeX Gyre Termes，或将`xits`选项更改为`txmath`（不建议这么做，尤其是如果您正在使用`XeTeX`或`LuaTeX`作为编译引擎时）。
+## 快速上手
 
-本文档类已经基于教务给定的要求，为论文中需要使用加粗的位置使用了伪粗体（伪粗体的实现见`cjkfakebold.sty`，没有使用`AutoFakeBold`选项是由于其在`XeLaTeX`下会导致粗体汉字无法被正确复制，感谢[Stack Exchange上的用户Leo Liu提供的解决方案](https://tex.stackexchange.com/a/180448)）。注意该方案可能会导致部分字符（如标点符号）的间距出现问题，但考虑到伪粗体在论文中实际使用的场合，认为该问题是可以接受的。本文档类中`\textbf`对中文内容的默认行为是使用黑体，如果你希望使用伪粗体，请使用`\CJKfakebold`命令，用法与`\textbf`类似。由于部分平台上字库（如Overleaf下ctex默认使用的Fandol字库）中黑体具有粗体特性，因此在部分平台（尤其是Overleaf）上，标题中设置了伪粗体的黑体可能出现异常加粗。如果遇到了该问题，可以设置文档类的`noboldheiti`选项来禁用黑体字标题的伪粗体。
+如果你希望快速使用本项目进行毕业设计（论文）的编写，你可以参考以下步骤：
 
-为满足指导手册中对子图格式的要求，文档类中使用`tikz`包实现了`\subfigwithlabel`命令，该命令会为引用的图左上角加上当前`subfigure`的编号。由于作者暂时无法实现自动调整子图图题至主图图题下方，如果要实现与教务要求中完全一致的格式，你需要手动调整图题，使得子图图题不显示，并在主图图题中显示子图图题，具体用法请参考`ch_concln.tex`
+1. 在[Overleaf](https://www.overleaf.com/)上注册、登录并创建新项目。Overleaf是在线的多人共享LaTeX编辑平台。
+2. 下载本项目的全部文件。`figs`文件夹中包含的图片可以删除，为`README.md`中用到的图片。
+3. 清空你的Overleaf项目中的所有文件，并将本项目的全部文件上传到项目中。
+4. 点击Overleaf项目中的菜单（左上角），将主要文档（Main Document）选择为bare_thesis.tex，并编译（Compile）文件。你应当能够看到右侧窗口显示编译后的文件。你可以阅读该文件及文件名为`ch_***.tex`的文件来了解如何使用本项目。
 
-如果你对此处子图的实现有更好的想法，欢迎提出issue或PR！
+## 预览
 
-以下为原项目（[BUPTthesis-ctex](https://github.com/qcts33/BUPTthesis-ctex)）的`README.md`文件中的内容，感谢qcts33前辈对该项目做出的巨大贡献。
+|  [封面](metadata.tex)   |              诚信声明              |
+| :---------------------: | :--------------------------------: |
+| ![封面](figs/cover.png) | ![诚信声明](figs/declarations.png) |
 
----
+|        [中文摘要](abstract.tex)        |         目录          |
+| :------------------------------------: | :-------------------: |
+| ![中文摘要](figs/chinese_abstract.png) | ![目录](figs/toc.png) |
 
-在本项目之前已有多个为北邮研究生学位设计的LaTeX文档类，经过张煜博士（Dazzle Zhang）和王贤凌博士（rioxwang）的努力，[BUPTGraduateThesis](https://github.com/rioxwang/BUPTGraduateThesis)的功能已经相当完善。
-但是，之前的项目存在很多问题。
-首先，由于之前的项目启动时间较早，原文档类使用了很多较为古老的方式来实现，而这些方法已经逐渐被新的方案所替代。
-其次，原文档类使用了很多 LaTeX 的底层命令，再加上注释的缺乏，其代码的可读性较差。这使得项目后期维护困难，也使得让更多人参与进来的的门槛较高。
-针对这些问题，本项目采用了一些新的方法来重新实现北邮研究生学位论文。
-其中最主要的区别就是本项目不再直接调用xeCJK，而是通过CTeX的定制化功能来实现。由于字体选择、中文格式设定等功能大多直接由 CTeX 完成，本文档类在代码量大幅减少的同时，几乎可以实现在 Windows、MacOS上的开箱即用。Linux 系统上也只需按照 CTeX 的常规方式配置字体即可。
-除此之外，对于页眉页脚、目录、引文等部分的调整也都采用相应的宏包来实现，从而尽可能的避免使用底层命令，提高代码的可读性。
+|    [图片与子图](ch_concln.tex)     |       [参考文献](pubs.bib)       |
+| :--------------------------------: | :------------------------------: |
+| ![图片与子图](figs/subfigures.png) | ![参考文献](figs/references.png) |
 
-# 使用说明
+|  [附录](app_lhospital.tex)   |       |
+| :--------------------------: | :---: |
+| ![附录](figs/appendices.png) |       |
 
-## 编译
+## 使用说明
+
+**以下内容部分参考了[原项目](https://github.com/qcts33/BUPTthesis-ctex)的README。**
+
+### 编译
 
 由于本项目采用一些较新的工具来实现功能，对于老版本的LaTeX系统可能存在兼容性问题，建议使用最新的TeX Live或者MiKTeX来进行编译。
 
@@ -55,71 +64,60 @@ xelatex %DOC%
 
 `makeglossaries %DOC%` 不用在写作的过程中反复的运行，这个并不影响正文中的输出，所以只需在编译最终版的时候执行一次用以生成缩略语表即可。
 
-## Overleaf在线编译
-
-现在本项目已经能在 Overleaf 上直接使用了，由于 Adobe 宋体的逗号和 Windows 自带宋体逗号有较大差异，为了最大可能减少问题的出现，故使用了 Windows 自带字体。
-
-[Overleaf模板地址](https://www.overleaf.com/latex/templates/beijing-university-of-posts-and-telecommunications-master-slash-phd-thesis-template/dkpkvpsvvhpg)
-
-## 选项
+### 选项
 
 - `txmath` 使用该选项启用 Times 字体的数学部分。
 - `xits` 使用 XITS 项目提供的字体。
 - `review` 用以自动在扉页上隐藏个人信息。
 - `chapterbib` 默认将引文列在正文的末尾，可使用该选项将采用文献列在各章的末尾。
 
-# 已知问题
+### 伪粗体
 
-## 扉页
-
-研究生院给的扉页样例上采用了粗宋体（伪粗体），但本文档类默认绘制的扉页并没有采用粗体字。这是因为Windows上其实并没有粗宋体字形，CTeX中默认使用黑体来代替粗宋体。不过《关于研究生学位论文格式的统一要求》上并没有明确指出对粗宋体的使用，我想应该问题不大。
-
-实在不放心的话可以自行用Word绘制中英文扉页和声明，然后导出成`cover.pdf`放在本项目的根目录。本文档类在发现`cover.pdf`之后便不会自行绘制相应的内容而是直接将`cover.pdf`贴在文档的最前面。
-
+本文档类已经基于教务给定的要求，为论文中需要使用加粗的位置使用了伪粗体（伪粗体的实现见`cjkfakebold.sty`，没有使用`AutoFakeBold`选项是由于其在`XeLaTeX`下会导致粗体汉字无法被正确复制，感谢[Stack Exchange上的用户Leo Liu提供的解决方案](https://tex.stackexchange.com/a/180448)）。注意该方案可能会导致部分字符（如标点符号）的间距出现问题，但考虑到伪粗体在论文中实际使用的场合，认为该问题是可以接受的。本文档类中`\textbf`对中文内容的默认行为是使用黑体，如果你希望使用伪粗体，请使用`\CJKfakebold`命令，用法与`\textbf`类似。由于部分平台上字库（如Overleaf下ctex默认使用的Fandol字库）中黑体具有粗体特性，因此在部分平台（尤其是Overleaf）上，标题中设置了伪粗体的黑体可能出现异常加粗。如果遇到了该问题，可以设置文档类的`noboldheiti`选项来禁用黑体字标题的伪粗体。
 
 还有一个替代方案是自行选择一个粗宋体字体，将字体文件重命名为`bsong.ttf`。本文当类将在发现`bsong.ttf`文件之后自动使用其中的字体来绘制中文封面。
 在进行了一些对比之后，我发现[汉仪中宋](http://www.hanyi.com.cn/productdetail.php?id=973)的字重跟 Word 中的加粗宋体比较接近，而且是个人使用免费，推荐给大家。使用效果可参见`bare_thesis.pdf`的封面。由于我不知道二次分发自己下载的字体会不会有问题，麻烦大家自行前往汉仪的网站下载。
 
 另外，如果`cover.pdf`和`cover.tex`都没有找到，文档类会直接放弃绘制扉页。
 
-## 数学字体
+### 引文格式
 
-~~不知是我系统的问题还是`newtx`包存在问题，我这里调用`newtxmath`之后就有部分数学符号无法使用。现在暂时采用LaTeX默认的cm数学字体。不过不管用什么数学字体，LaTeX的数学排版肯定比Word强。另外本文档类提供一个`txmath`选项来开启`newtxmath`的调用。~~
-
-发现我的系统里少一个叫`boondox`的字体包，手动安装之后便可以正常编译`newtxmath`了。
-如果有遇到相似问题的可以尝试一下。
-
-## 引文格式
-
-虽然《关于研究生学位论文格式的统一要求》里面没有明确说明，但是引文格式要求是基本符合[国家标准](https://zh.wikipedia.org/wiki/%E6%96%87%E5%90%8E%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E8%91%97%E5%BD%95%E8%A7%84%E5%88%99)的。
-所以本项目采用[biblatex-gb7714-2015](https://www.ctan.org/pkg/biblatex-gb7714-2015)来处理引文格式。
-但由于该包没有在以前的文档类中使用过，并不清楚学校对该包的接受度如何。
+本项目采用[biblatex-gb7714-2015](https://www.ctan.org/pkg/biblatex-gb7714-2015)来处理引文格式，产生的引文格式符合GB7714-2015的要求。
 
 如果编译时出现```Package xkeyval Error: `gbnamefmt' undefined in families `blx@opt@pre`. [\blx@processoptions]``` 请更新biblatex-gb7714-2015的版本。
 
-## 注脚
+### 自动缩略语
 
-`BUPTGraduateThesis`文档类使用了给很大的篇幅来实现带圈数字的注脚，但我在《关于研究生学位论文格式的统一要求》并没有看到相应的要求。另外我觉得注脚并不是什么很有必要的功能，本项目放弃对带圈数字的实现。
-
-
-## 自动缩略语
-
-~~`BUPTGraduateThesis`中实现了非常强大的自动缩略语功能，但是我在移植过程中发现自动缩略语所依赖`glossaries`包似乎跟`biblatex`冲突。由于时间紧迫，未能查明具体原因。暂时放弃实现相应的功能，现在只能手动管理缩略语了。~~
-
-经过 [@qin-nz](https://github.com/qin-nz) 的提示，我发现原来`glossaries`与`biblatex`其实并无冲突，至少我原来遇到的问题无法再现了。
-
-现在成功移植了`BUPTGraduateThesis`中自动缩略语功能。
-不过`\gls{}`的输出会造成中英文混排的时候自动空格不出现的问题。
+本项目继承了原项目的自动缩略语功能，不过`\gls{}`的输出会造成中英文混排的时候仍然会存在自动空格不出现的问题。
 这个问题暂时无解，所以需要大家手动控制一下`\gls{}`两侧的空格。
 另外编译的时候需要多加一个`makeglossaries %DOC%`
 
-## 功能缺乏
+## 常见问题
 
-由于本项目几乎完全重写，功能实现其实远没有`BUPTGraduateThesis`项目那么完整。暂时需要大家自行修改代码来实现硕士、博士后论文，涉密论文所需的调整。如果日后有时间我会尽量完善相关的功能。
+### 为什么要使用$\LaTeX$？
 
-# 致谢
+在毕业设计（论文）中使用$\LaTeX$的优势在于它能提供专业级的排版和一致的格式控制，尤其擅长数学公式、图表与表格的排版；通过BibTeX可实现参考文献的自动管理与样式切换，避免手动格式错误；目录、交叉引用、索引与附录能自动生成，保证编号与引用始终准确；与Git等版本控制以及自动化编译工具（如latexmk）配合良好，便于多人协作与可重复构建；模板化的文档结构能强制遵守学校格式要求、提高可维护性，且生成的PDF具备印刷级质量。
 
-感谢张煜博士和王贤凌博士的贡献。虽然本文档类几乎完全重写，但很多设计还是继承了`BUPTGraduateThesis`项目。
+LaTeX在可靠性、可重复性和专业外观方面相比传统Word处理软件具有显著优势，长期来看能为论文撰写与排版节省大量时间与精力。
 
-另外一些实现细节也参考了[SJTUThesis](https://github.com/sjtug/SJTUThesis)，在此也对[相关人员](https://github.com/sjtug/SJTUThesis/graphs/contributors)表示感谢。
+### 为什么我要使用这个项目？
 
+在本项目之前已有多个为北邮本科生毕业设计（论文）的LaTeX文档类，如[BYRIO/BUPTBachelorThesis](https://github.com/BYRIO/BUPTBachelorThesis)和[jackfiled/BUPTBachelorThesis](https://github.com/jackfiled/BUPTBachelorThesis)。但经过测试，发现该文档类仍然存在着一些问题。例如，该文档类未能在LaTeX下实现封面和诚信声明，而是采用在Word中填写，并使用`pdf`格式导入项目中；并且，在Overleaf平台上使用时，需要额外的调整方可正常编译，这为用户在使用该项目时带来了不必要的额外工作量；此外，这些文档类的附录不具有自动编号功能，用户需要手动设置附录序号，类似于`\section*{附录1\quad{}...}`，为用户编写文章引入了更多的负担。
+
+本项目基于[qcts33](https://github.com/qcts33)前辈建立的[BUPTthesis-ctex](https://github.com/qcts33/BUPTthesis-ctex)文档类，原项目在Overleaf上被收录为模板，经历了时间的考验，且整体结构也更为简单、清晰，功能更加丰富、现代，本文档类同样也能在Overleaf平台上实现几乎开箱即用的体验。本项目根据北京邮电大学教务处发布的《北京邮电大学2025届本科毕业设计（论文）指导手册》中的格式要求，实现了封面到附录部分的内容。相比已有的本科毕业设计（论文）文档类，本项目使用分散子文件的形式组织各个章节，附录具有自动编号功能，还从原文档类继承了包括自动缩略语表在内的丰富功能，提升了用户使用本文档类编写论文的体验。此外，本文档类已通过教务处要求的自动格式检测平台（论无忧）的检测，并且不存在任何错误，不存在模板本身导致的警告。
+
+作者已使用本项目完成毕业设计（论文）的编写并顺利通过。
+
+## 注意事项
+
+如果您在使用该项目时遇到任何问题，欢迎在Issues中提出！
+
+本文档类使用了`xits`选项，使用`unicode-math`包指定数学字体，并修改了西文字体为Times New Roman，这是为了设置并正常加载Times New Roman以通过自动格式检测平台（论无忧）的检测。如果你介意在文章中使用非开源字体，你可以考虑将`BUPTthesis.cls`中的Times New Roman相关内容替换为TeX Gyre Termes，或将`xits`选项更改为`txmath`（不建议这么做，尤其是如果您正在使用`XeTeX`或`LuaTeX`作为编译引擎时）。
+
+为满足指导手册中对子图格式的要求，文档类中使用`tikz`包实现了`\subfigwithlabel`命令，该命令会为引用的图左上角加上当前`subfigure`的编号。由于作者暂时无法实现自动调整子图图题至主图图题下方，如果要实现与教务要求中完全一致的格式，你需要手动调整图题，使得子图图题不显示，并在主图图题中显示子图图题，具体用法请参考`ch_concln.tex`
+
+如果你对此处子图的实现有更好的想法，欢迎提出issue或PR！
+
+## 致谢
+
+`README_OLD.md`中为原项目（[BUPTthesis-ctex](https://github.com/qcts33/BUPTthesis-ctex)）的`README.md`文件中的内容，感谢qcts33前辈对该项目做出的巨大贡献。
