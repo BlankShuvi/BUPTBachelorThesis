@@ -27,10 +27,10 @@
 
 \iftoggle{noboldheiti}
 {%
-\newcommand{\bheiti}[1]{#1}
+  \newcommand{\bheiti}[1]{#1}
 }
 {%
-\newcommand{\bheiti}[1]{\CJKfakebold{#1}}
+  \newcommand{\bheiti}[1]{\CJKfakebold{#1}}
 }
 
 % config ctex
@@ -45,7 +45,7 @@
     pagestyle = main,
     beforeskip = 0pt,
     afterskip = 40pt,
-  },
+   },
   section/format = \zihao{4}\heiti\bfseries\bheiti,
   subsection/format = \indent\zihao{-4}\heiti\bfseries\bheiti,
   subsubsection/format = \indent\zihao{-4}\heiti\bfseries\bheiti,
@@ -79,7 +79,7 @@
 \RequirePackage{amsthm,thmtools}
 \RequirePackage{mathtools,amsfonts,amssymb,empheq}
 \ifthenelse{\equal{\bupt@mathfont}{tx}}{
-\RequirePackage{newtxtext}
+  \RequirePackage{newtxtext}
   \RequirePackage[smallerops]{newtxmath}
   \RequirePackage[scr=euler]{mathalpha}
 }{}
@@ -149,22 +149,22 @@
   \newcommand{\mainbib}{\printbibliography[heading=bibintoc,title={\heiti\bupt@label@refname}]}
 }
 \iftoggle{review}{%
-\newcommand{\pubcite}[1]{\AtNextCitekey{\clearname{author}}\fullcite{#1}}
+  \newcommand{\pubcite}[1]{\AtNextCitekey{\clearname{author}}\fullcite{#1}}
 }{%
-\newcommand{\pubcite}[1]{\AtNextCite{\defcounter{maxnames}{99}}\fullcite{#1}}
+  \newcommand{\pubcite}[1]{\AtNextCite{\defcounter{maxnames}{99}}\fullcite{#1}}
 }
 
 % hyperref
 \AtBeginDocument{
-	\hypersetup{
+  \hypersetup{
     bookmarksnumbered,
-		colorlinks,
-		urlcolor=black,
-		linkcolor=black,
-		citecolor=black,
-		pdfauthor={\bupt@meta@cauthor},
-		pdftitle={\bupt@meta@ctitle},
-	}
+    colorlinks,
+    urlcolor=black,
+    linkcolor=black,
+    citecolor=black,
+    pdfauthor={\bupt@meta@cauthor},
+    pdftitle={\bupt@meta@ctitle},
+  }
 }
 \RequirePackage{hyperref}
 
@@ -372,7 +372,7 @@
 % 紧凑间距
 \RequirePackage[inline]{enumitem}
 \setlist{leftmargin=\parindent, labelwidth=*,noitemsep,itemjoin=\enskip}
-\setlist[enumerate]{label={(\arabic*)}}
+\setlist[enumerate]{label={\arabic*.}}
 
 % config numbering for equation fig table and so on.
 \AtBeginDocument{%
@@ -398,17 +398,17 @@
 {\newcommand*{\bsong}{\songti}}
 \IfFileExists{cover.tex}
 {%
-	\input{cover.tex}
-	\renewcommand\maketitle{%
-	 \makechinesetitle
-	 % \makeenglishtitle
-	 \iftoggle{review}{\cleardoublepage}{\makedeclaration}
+  \input{cover.tex}
+  \renewcommand\maketitle{%
+    \makechinesetitle
+    % \makeenglishtitle
+    \iftoggle{review}{\cleardoublepage}{\makedeclaration}
   }
   \toggletrue{addcover}
 }{}
 \IfFileExists{cover.pdf}
 {%
-	\RequirePackage{pdfpages}
+  \RequirePackage{pdfpages}
   \renewcommand\maketitle{\includepdf[pages=-]{cover.pdf}}
   \toggletrue{addcover}
 }{}
@@ -417,12 +417,12 @@
 % 中英文摘要+关键词
 \newenvironment{cabstract}
 {%
-	\cleardoublepage
+  \cleardoublepage
   \pdfbookmark[0]{\bupt@label@cabstract}{abstract}
   \begin{center}
     {\zihao{3}\bheiti{\bfseries\heiti\bupt@meta@ctitle}}
     \vskip 20pt
-    {\zihao{-3}\CJKfakebold{\heiti\bupt@label@cabstract}}
+      {\zihao{-3}\CJKfakebold{\heiti\bupt@label@cabstract}}
   \end{center}
   \markboth{\bupt@label@cabstract}{}
   \zihao{-4}
@@ -430,21 +430,21 @@
 }
 {
   \par
-	\vspace{20pt}
-	\noindent
-	{\zihao{-4} {\CJKfakebold{\heiti\bupt@label@ckeywords}} {\bupt@meta@ckeywords}}
+  \vspace{20pt}
+  \noindent
+  {\zihao{-4} {\CJKfakebold{\heiti\bupt@label@ckeywords}} {\bupt@meta@ckeywords}}
 }
 
 \newenvironment{eabstract}
 {%
-	\cleardoublepage
+  \cleardoublepage
   \pdfbookmark[0]{\bupt@label@eabstract}{ebstract}
   \begin{center}
     \begin{minipage}{120mm}
       \centering
       {\zihao{3}\bfseries\bupt@meta@etitle}
       \vskip 20pt
-      {\zihao{-3}\bfseries\bupt@label@eabstract}
+        {\zihao{-3}\bfseries\bupt@label@eabstract}
     \end{minipage}
   \end{center}
   \markboth{\bupt@label@eabstract}{}
@@ -454,9 +454,9 @@
 }
 {
   \par
-	\vspace{20pt}
-	\noindent
-	{\zihao{-4} {\bfseries\bupt@label@ekeywords} {\bupt@meta@ekeywords}}
+  \vspace{20pt}
+  \noindent
+  {\zihao{-4} {\bfseries\bupt@label@ekeywords} {\bupt@meta@ekeywords}}
 }
 
 \newenvironment{notations}
@@ -465,8 +465,8 @@
   \markboth{\bupt@label@notations}{}
   \pdfbookmark[0]{\bupt@label@notations}{notations}
   \begin{longtabu}{lX}
-}
-{\end{longtabu}}
+    }
+    {\end{longtabu}}
 
 \newenvironment{acknowledgement}
 {%
@@ -485,22 +485,22 @@
 \usetikzlibrary{positioning, calc}
 
 \tikzset{
-    subfiglabel/.style={
-        anchor=north west,
-        text opacity=1,
-        inner sep=1pt,
-        font=\small
+  subfiglabel/.style={
+      anchor=north west,
+      text opacity=1,
+      inner sep=1pt,
+      font=\small
     }
 }
 
 \newcommand{\subfigwithlabel}[1]{% 创建\subfigwithlabel命令以显示要求的子图标号
-    \begin{tikzpicture}[
-        inner sep=0pt,
-        baseline=(imageNode.base) 
-      ]
-        \node (imageNode) {#1};
-        \node[subfiglabel] at (imageNode.north west) {\thesubfigure};
-    \end{tikzpicture}%
+  \begin{tikzpicture}[
+      inner sep=0pt,
+      baseline=(imageNode.base)
+    ]
+    \node (imageNode) {#1};
+    \node[subfiglabel] at (imageNode.north west) {\thesubfigure};
+  \end{tikzpicture}%
 }
 
 \RequirePackage{placeins}
@@ -516,7 +516,7 @@
       format = \zihao{4}\heiti\bfseries\bheiti,
       beforeskip = 3.5ex plus 1ex minus .2ex,
       afterskip = 2.3ex plus .2ex,
-    },
+     },
   }
   \makeatother
 
@@ -527,19 +527,19 @@
 }
 
 \newcommand{\unsetappendixformat}{%
-    \hypersetup{bookmarksdepth=2}
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+  \hypersetup{bookmarksdepth=2}
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 
-    \makeatletter
-    \ctexset{%
-        chapter = {
-            break = \if@openright\cleardoublepage\else\clearpage\fi,
-            format = \zihao{3}\heiti\centering\bfseries\bheiti,
-            beforeskip = 0pt,
-            afterskip = 40pt,
-        },
-    }
-    \makeatother
+  \makeatletter
+  \ctexset{%
+    chapter = {
+      break = \if@openright\cleardoublepage\else\clearpage\fi,
+      format = \zihao{3}\heiti\centering\bfseries\bheiti,
+      beforeskip = 0pt,
+      afterskip = 40pt,
+     },
+  }
+  \makeatother
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
