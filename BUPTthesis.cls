@@ -92,6 +92,7 @@
 \ifthenelse{\equal{\bupt@mathfont}{xits}}{
   \RequirePackage{fontspec}
   \setmainfont{Times New Roman}
+  \setmonofont{Times New Roman}
   \RequirePackage{unicode-math}
   \setmathfont{XITS Math}
   \setmathfont[range={cal,bfcal},StylisticSet=1]{XITS Math}
