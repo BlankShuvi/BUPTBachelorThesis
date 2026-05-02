@@ -1,51 +1,9 @@
-%%
-%% This is file `example/app_lhospital.tex',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% install/buptgraduatethesis.dtx  (with options: `app-lhospital')
-%% 
-%% This file is a part of the example of BUPTGraduateThesis.
-%% 
+\chapter{实验复现与参数配置说明}
 
-\chapter{不定型（$0/0$）极限的计算}
-\begin{theorem}[L'Hospital法则]
-  若
-  \begin{enumerate}
-  \item 当 $x \to a$ 时，函数 $f(x)$ 和 $g(x)$ 都趋于零；
-  \item 在点 $a$ 某去心邻域内，$f'(x)$ 和 $g'(x)$ 都存在，且 $g'(x)\not= 0$；
-  \item $\displaystyle\lim_{x \to a} \dfrac{f'(x)}{g'(x)}$ 存在（或为无穷大），
-  \end{enumerate}
-  那么
-  \begin{align}
-    \label{eq:app:lhospital}
-    \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}.
-  \end{align}
-\end{theorem}
-\begin{proof}
-  以下只证明两函数 $f(x)$ 和 $g(x)$ 在 $x = a$ 为光滑函数的情形。
-  由于 $f(a) = g(a) = 0$，原极限可以重写为
-  \begin{align*}
-    \lim_{x \to a} \frac{f(x) - f(a)}{g(x) - g(a)}.
-  \end{align*}
-  对分子分母同时除以 $(x - a)$，得到
-  \begin{align*}
-    \lim_{x \to a} \frac{%
-      \dfrac{f(x) - f(a)}{x - a}
-    }{%
-      \dfrac{g(x) - g(a)}{x - a}
-    } &
-    = \frac{%
-      \displaystyle\lim_{x \to a} \frac{f(x) - f(a)}{x - a}
-    }{%
-      \displaystyle\lim_{x \to a} \frac{g(x) - g(a)}{x - a}
-    }.
-  \end{align*}
-  分子分母各得一差商极限，即函数 $f(x)$ 和 $g(x)$ 分别在 $x = a$ 处的导数
-  \begin{align*}
-    \lim_{x \to a} \frac{f(x)}{g(x)} &
-    = \frac{f'(a)}{g'(a)}.
-  \end{align*}
-  由光滑函数的导函数必为一光滑函数，故 \eqref{eq:app:lhospital} 得证。
-\end{proof}
+为保证本文实验过程具有可复现性，系统在原型验证阶段对设备连接、检测模型、控制策略和目标记忆模块进行了统一配置。实验前需要保证布控球设备与验证主机之间具有稳定网络连接，并完成设备 SDK、播放库接口和检测模型的可用性检查。在此基础上，系统通过实时预览链路获取视频帧，通过检测线程输出人体目标信息，并由控制线程根据目标偏差生成 PTZ 控制指令。
+
+实验阶段采用 YOLOv8n 作为人体检测模型，输入尺寸设置为 384，置信度阈值设置为 0.4。该配置优先考虑实时性，以满足检测结果能够及时反馈至 PTZ 控制模块的需求。人体 ReID 记忆模块采用低维颜色和几何特征进行短时身份关联，匹配阈值设置为 0.86，目标最大保留帧数设置为 120，用于支持目标短时遮挡或离开画面后的重新关联。
+
+PTZ 控制模块采用阈值死区、比例脉冲、指令冷却和指数平滑相结合的控制策略。水平和垂直方向分别设置中心死区，目标中心点在进入死区范围后不再触发云台动作；当偏差超过阈值时，系统根据偏差大小调整单次控制脉冲时长，并通过冷却时间限制连续指令频率。该参数组合能够在原型阶段兼顾响应速度和控制稳定性。
+
+在实验复现过程中，应重点记录视频链路延迟、检测帧率、目标 ID 连续性、PTZ 响应方向和异常退出后的资源释放情况。上述指标能够反映系统从视频输入、目标感知、控制决策到设备执行的完整闭环效果，也为后续嵌入式平台迁移和复杂场景优化提供对比依据。

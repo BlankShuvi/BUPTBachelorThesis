@@ -93,8 +93,8 @@
   \RequirePackage{fontspec}
   \setmainfont{Times New Roman}
   \RequirePackage{unicode-math}
-  \setmathfont{XITS Math}
-  \setmathfont[range={cal,bfcal},StylisticSet=1]{XITS Math}
+  \setmathfont{XITSMath-Regular.otf}
+  \setmathfont[range={cal,bfcal},StylisticSet=1]{XITSMath-Regular.otf}
 }{}
 
 

@@ -1,16 +1,15 @@
 \begin{cabstract}
-  中、英文摘要位于声明的次页，摘要应简明表达学位论文的内容要点，体现研究工作的核心思想。
-  重点说明本项科研的目的和意义、研究方法、研究成果、结论，注意突出具有创新性的成果和新见解的部分。
+面向临时布防、应急处置、移动巡检和现场安保等场景，布控球需要在复杂环境下完成目标发现、持续跟踪和云台自适应控制。传统布控球多依赖人工遥控或固定巡航策略，在目标快速移动、多人同时出现、临时遮挡以及设备倒挂安装等情况下，容易出现响应滞后、跟踪抖动和目标切换不稳定等问题。与此同时，若将视频流持续上传至云端进行分析，系统会受到网络带宽、通信时延、隐私保护和现场部署条件的共同限制。为提升布控球在边缘端的智能化水平，本文研究并实现了一种基于海康威视设备、YOLO 目标检测和自适应 PTZ 控制的嵌入式云台跟踪系统。
 
-  关键词是为文献标引工作而从论文中选取出来的、用以表示全文主题内容信息的术语。
-  关键词排列在摘要内容的左下方，具体关键词之间以均匀间隔分开排列，无需其它符号。
+本文首先完成海康威视 HCNetSDK 与 PlayCtrl 播放库的 Python 封装和调用，构建从设备登录、实时预览、码流解码到帧缓存读取的低延迟视频采集链路；随后选用轻量级 YOLOv8n 模型完成人体目标检测，并通过置信度过滤、坐标提取和人体外观特征构建，实现面向布控球画面的实时目标分析。在控制层面，系统根据人体目标中心与画面中心的偏差设计 PTZ 控制策略，引入偏差阈值、比例脉冲、控制冷却和指数平滑机制，使云台在保证响应速度的同时降低频繁抖动。针对多目标场景，本文进一步设计了轻量级人体 ReID 记忆模块，为检测目标分配稳定编号，支持自动选择最大人体目标或手动指定目标 ID，并在目标短暂离开画面后等待其重新入镜。系统还围绕倒挂安装、人工接管、检测结果反馈和异常退出等实际使用问题进行了工程适配。最后，系统构建人机交互模块，集成视频预览、目标状态呈现、模式切换、人工接管和检测结果反馈等功能，形成完整的检测、决策和控制闭环。
+
+初步测试表明，系统能够稳定获取布控球实时视频流，完成人体检测、目标编号、自动/指定目标跟踪和云台方向控制。YOLOv8n 在当前配置下可满足实时检测需求，ReID 记忆模块能够改善多人场景下的目标连续性，平滑控制策略能够缓解云台抖动。本文工作将视觉检测、目标记忆、云台控制和人机交互集成到真实布控球设备中，为低成本布控球智能跟踪设备提供了一种可实现方案，也为后续模型量化、复杂场景增强、嵌入式平台迁移和云边协同优化奠定了工程基础。
 \end{cabstract}
 
 \begin{eabstract}
- The Chinese and English abstract should appear after the declaration page.
- The abstract should present the core of the research work, especially the purpose and importance of the research, the method adopted, the results, and the conclusion.
+For temporary surveillance, emergency response, mobile inspection, and on-site security scenarios, a ball camera is expected to detect targets, maintain tracking, and control its pan-tilt unit adaptively in complex environments. Conventional ball camera systems usually rely on manual operation or fixed patrol routes, which makes them vulnerable to response delay, control jitter, and unstable target switching when targets move quickly, multiple people appear simultaneously, temporary occlusion occurs, or the device is installed upside down. In addition, continuously uploading video streams to the cloud may be constrained by network bandwidth, communication latency, privacy concerns, and deployment conditions. To improve the intelligence of ball cameras on the edge side, this thesis studies and implements an embedded adaptive PTZ tracking system based on Hikvision devices, YOLO object detection, and visual feedback control.
 
- Key words are terms selected for documentation indexing, which should present the main contributions of the thesis.
- Key words are aligned at the bottom left side of the abstract content.
- Key words should be separated by spaces but not any other symbols.
+The system first wraps and invokes Hikvision HCNetSDK and the PlayCtrl library in Python, building a low-latency video acquisition pipeline from device login, real-time preview, stream decoding, to frame buffering. A lightweight YOLOv8n model is then adopted for human detection, and real-time target analysis is implemented through confidence filtering, coordinate extraction, and lightweight appearance feature construction. At the control layer, the system calculates the deviation between the human target center and the image center, and generates PTZ commands with dead-zone thresholds, proportional pulse duration, command cooldown, and exponential smoothing. These mechanisms help the pan-tilt unit respond quickly while reducing unnecessary oscillation. For multi-person scenarios, a lightweight body ReID memory module is designed to assign stable IDs to detected people. The system supports automatic selection of the largest human target as well as manual tracking of a specified person ID, and waits for the selected target when it temporarily leaves the frame. Engineering adaptations are also made for inverted installation, manual intervention, detection feedback, and abnormal exit handling. Finally, a human-computer interaction module integrates video preview, target-state presentation, mode switching, manual takeover, and detection feedback, forming a complete perception-decision-control loop.
+
+Preliminary tests show that the system can stably obtain real-time video streams from the ball camera and perform human detection, identity assignment, automatic or specified target tracking, and PTZ directional control. YOLOv8n satisfies the real-time detection requirement under the current configuration, the ReID memory module improves target continuity in multi-person scenes, and the smoothed control strategy alleviates pan-tilt jitter. By integrating visual detection, target memory, PTZ control, and human-computer interaction on a real ball camera, this work provides a practical implementation path for low-cost intelligent tracking devices and lays an engineering foundation for further model quantization, complex-scene enhancement, embedded platform migration, and edge-cloud collaborative optimization.
 \end{eabstract}
